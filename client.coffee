@@ -13,6 +13,11 @@ class Client
 
     handleEvents: () ->
         @ws.on 'message', @.handleMessage.bind(@)
+        @ws.on 'error', @.handleError.bind(@)
+
+    handleError: (error) ->
+        if error.message
+            console.log(@ws.upgradeReq.connection.remoteAddress)
 
     handleMessage: (message) ->
         try
