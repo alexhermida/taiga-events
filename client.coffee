@@ -16,8 +16,10 @@ class Client
         @ws.on 'error', @.handleError.bind(@)
 
     handleError: (error) ->
-        if error.message
-            console.log(@ws.upgradeReq.connection.remoteAddress)
+        console.log('client_error:', error)
+        req = @ws.upgradeReq
+        request_headers = req.headers
+        console.log('request_headers:', request_headers)
 
     handleMessage: (message) ->
         try
